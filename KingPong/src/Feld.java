@@ -10,9 +10,13 @@ import java.awt.Color;
 import java.awt.Canvas;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.HierarchyBoundsAdapter;
+import java.awt.event.HierarchyEvent;
 
 
 public class Feld extends JFrame {
+int possy1 = 116;
+int possy2 = 116;
 
 	private JPanel contentPane;
 
@@ -40,16 +44,7 @@ public class Feld extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
-		addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if(e.getKeyCode() == KeyEvent.VK_UP)
-				System.out.println("UP");
-			
-			if(e.getKeyCode() == KeyEvent.VK_DOWN) {
-				System.out.println("DOWN");
-			}
-			}});
+		
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -65,6 +60,7 @@ public class Feld extends JFrame {
 		Canvas spl1 = new Canvas();
 		
 		
+		
 		spl1.setBackground(Color.WHITE);
 		spl1.setBounds(10, 116, 15, 55);
 		contentPane.add(spl1);
@@ -74,6 +70,36 @@ public class Feld extends JFrame {
 		canvas.setBounds(210, 0, 3, 261);
 		contentPane.add(canvas);
 	
+		addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_S) {
+					possy1 = possy1 + 5;
+					spl1.setBounds(10, possy1, 15, 55);
+					System.out.println(possy1);
+					System.out.println("DOWN");
+				}
+				
+				if(e.getKeyCode() == KeyEvent.VK_W) {
+				System.out.println("UP");
+				possy1 = possy1 - 5;
+				spl1.setBounds(10, possy1, 15, 55);
+			
+			
+				}
+				if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+					possy2 = possy2 + 5;
+					spl2.setBounds(409, possy2, 15, 55);
+					System.out.println(possy1);
+					System.out.println("DOWN");
+				}
+				
+				if(e.getKeyCode() == KeyEvent.VK_UP) {
+				System.out.println("UP");
+				possy2 = possy2 - 5;
+				spl2.setBounds(409, possy2, 15, 55);
+				
+			}}
+				}});
+		
 
-}
-}
