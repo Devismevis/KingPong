@@ -23,6 +23,10 @@ public class Feld extends JFrame {
 int possy1 = 116;
 int possy2 = 116;
 int größe = 15;
+int Count = 0;
+int possy3 = 208;
+
+// ;_;
 
 	private JPanel contentPane;
 
@@ -61,7 +65,7 @@ int größe = 15;
 		Canvas spl2 = new Canvas();
 		
 		
-		spl2.setBackground(Color.WHITE);
+		spl2.setBackground(Color.BLUE);
 		spl2.setBounds(409, 116, 15, 55);
 		contentPane.add(spl2);
 		
@@ -69,7 +73,7 @@ int größe = 15;
 		
 		
 		
-		spl1.setBackground(Color.WHITE);
+		spl1.setBackground(Color.RED);
 		spl1.setBounds(10, 116, 15, 55);
 		contentPane.add(spl1);
 		
@@ -77,6 +81,13 @@ int größe = 15;
 		canvas.setBackground(Color.WHITE);
 		canvas.setBounds(210, 0, 3, 261);
 		contentPane.add(canvas);
+		
+		Canvas Shlook = new Canvas();
+		Shlook.setBackground(Color.WHITE);
+		Shlook.setBounds(208, 128, 15, 15);
+		contentPane.add(Shlook);
+		
+		
 	
 		addKeyListener(new KeyAdapter() {
 			@Override
@@ -113,9 +124,17 @@ int größe = 15;
 						}
 						
 					}});
-			
+				
+			  
 		
 		
-	}}
+	}	
+	
+	
+	public void move1() {
+		  while (Count < 20) {
+			  possy3 = possy3 - 5;
+			  Shlook.setBounds(208, 128, 15, 15);
+}}}
 		
 
