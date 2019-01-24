@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import org.eclipse.wb.swt.SWTResourceManager;
@@ -12,11 +13,16 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.HierarchyBoundsAdapter;
 import java.awt.event.HierarchyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelListener;
+import java.awt.event.MouseWheelEvent;
 
 
 public class Feld extends JFrame {
 int possy1 = 116;
 int possy2 = 116;
+int größe = 15;
 
 	private JPanel contentPane;
 
@@ -41,6 +47,8 @@ int possy2 = 116;
 	 * Create the frame.
 	 */
 	public Feld() {
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -74,32 +82,40 @@ int possy2 = 116;
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_S) {
-					possy1 = possy1 + 5;
+					possy1 = possy1 + größe;
 					spl1.setBounds(10, possy1, 15, 55);
 					System.out.println(possy1);
-					System.out.println("DOWN");
+					System.out.println("DOWN1");
 				}
 				
 				if(e.getKeyCode() == KeyEvent.VK_W) {
-				System.out.println("UP");
-				possy1 = possy1 - 5;
+				System.out.println("UP1");
+				possy1 = possy1 - größe;
 				spl1.setBounds(10, possy1, 15, 55);
-			
-			
-				}
-				if(e.getKeyCode() == KeyEvent.VK_DOWN) {
-					possy2 = possy2 + 5;
-					spl2.setBounds(409, possy2, 15, 55);
-					System.out.println(possy1);
-					System.out.println("DOWN");
 				}
 				
-				if(e.getKeyCode() == KeyEvent.VK_UP) {
-				System.out.println("UP");
-				possy2 = possy2 - 5;
-				spl2.setBounds(409, possy2, 15, 55);
-				
-			}}
-				}});
+			}});
+				addKeyListener(new KeyAdapter() {
+					public void keyPressed(KeyEvent d) {
+					
+					
+						if(d.getKeyCode() == KeyEvent.VK_DOWN) {
+							possy2 = possy2 + größe;
+							spl2.setBounds(409, possy2, 15, 55);
+							System.out.println(possy2);
+							System.out.println("DOWN2");
+						}
+						
+						if(d.getKeyCode() == KeyEvent.VK_UP) {
+						System.out.println("UP2");
+						possy2 = possy2 - größe;
+						spl2.setBounds(409, possy2, 15, 55);
+						}
+						
+					}});
+			
+		
+		
+	}}
 		
 
