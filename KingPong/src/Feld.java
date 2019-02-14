@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -40,19 +39,24 @@ int width = 450;
 int height = 300;
 int yes= 1;
 JLabel ball;
+Thread t;
+  Feld frame ;
+
 
 	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
+	 * @throws InterruptedException 
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) throws InterruptedException {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				Thread move = new Thread (this);
+				
 				try {
-					Feld frame = new Feld();
-					frame.setVisible(true);
+					
+					 frame = new Feld();
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -60,14 +64,15 @@ JLabel ball;
 			}
 		});
 		
-	}
+	} */
 
 	/**
 	 * Create the frame.
+	 * @throws InterruptedException 
 	 */
-	public Feld() {
-		
-		
+	
+	public Feld() throws InterruptedException {
+	   
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -96,8 +101,8 @@ JLabel ball;
 		  linie.setBackground(Color.WHITE);
 		  linie.setBounds(210, 0, 3, 261);
 		  contentPane.add(linie);
-		
-		  
+			Thread.sleep(100);
+	
 		
 	//bewegen
 		addKeyListener(new KeyAdapter() {
@@ -134,18 +139,42 @@ JLabel ball;
 						spl2.setBounds(409, possy2, 15, 55);
 						}
 						
+						 
 					}});
 				
 				
-	runo();			
 		
-		
+				System.out.println("lul");
+
+				ball();	
 	}
+			public void ball() throws InterruptedException { 
+			while (true) {
+				        System.out.println("this is PONG");
+				        posX += ballSpeedX;
+				        posY += ballSpeedY;
+				        ball.setLocation(posX,posY);
+				        if (posX < 0) {
+				            ballSpeedX = -ballSpeedX; 
+				            posX = 0; 
+				        } else if (posX + ballRadius > width) {
+				            ballSpeedX = -ballSpeedX;
+				            posX = width - ballRadius;
+				            posY = 0;
+				        } else if (posY + ballRadius > height) {
+				            ballSpeedY = -ballSpeedY;
+				            posY = height - ballRadius;
+				        }	
+				        frame.setVisible(true);
+		Thread.sleep(5000);
+				}
+				
+	}}
 	
 
-	public void runo() {
+	/*public void runo() {
 		System.out.println("yes");
-		Thread Thread = new Thread();
+		Thread game = new Thread();
 		
 try {	   
 	        while (true) {
@@ -166,11 +195,11 @@ try {
 	                posY = height - ballRadius;
 	            }
 	         
-	          Thread.sleep(100);
+	          game.sleep(100);
 	        }
 }catch(InterruptedException e){}
-	}
-	}
+	}*/
+	
 
 		
 
