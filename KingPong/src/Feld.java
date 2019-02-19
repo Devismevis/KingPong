@@ -36,11 +36,11 @@ int ballRadius = 20;
 int posX;		
 int posY;
 int width = 450;
-int height = 300;
+int height = 270;
 int yes= 1;
 JLabel ball;
 Thread t;
-  Feld frame ;
+Feld frame ;
 
 
 	private JPanel contentPane;
@@ -71,31 +71,39 @@ Thread t;
 	 * @throws InterruptedException 
 	 */
 	
-	public Feld() throws InterruptedException {
-	   
+	public Feld(){
+		
+	}
+	public void framee() {
+		frame = new Feld();
+	}
+		public void start() throws InterruptedException {
+			
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		
+
 		
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new LineBorder(Color.CYAN, 2));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		 
-		  ball = new JLabel("");
-		 ball.setIcon(new ImageIcon("C:\\Users\\davids3\\Desktop\\F5OqdKdHDwu.png"));
-		 ball.setBounds(204, 128, 16, 16);
-		 contentPane.add(ball);
+		ball = new JLabel("");
+		ball.setIcon(new ImageIcon("C:\\Users\\davids3\\Desktop\\F5OqdKdHDwu.png"));
+		ball.setBounds(204, 128, 16, 16);
+		contentPane.add(ball);
 		
-		 Canvas spl2 = new Canvas();
-		 spl2.setBackground(Color.BLUE);
-		 spl2.setBounds(409, 116, 15, 55);
-		 contentPane.add(spl2);
+		Canvas spl2 = new Canvas();
+		spl2.setBackground(Color.BLUE);
+		spl2.setBounds(409, 116, 15, 55);
+		contentPane.add(spl2);
 		
-		  Canvas spl1 = new Canvas();
-		  spl1.setBackground(Color.RED);
-		  spl1.setBounds(10, 116, 15, 55);
-		  contentPane.add(spl1);
+		Canvas spl1 = new Canvas();
+		spl1.setBackground(Color.RED);
+		spl1.setBounds(10, 116, 15, 55);
+	    contentPane.add(spl1);
 		  
 		  Canvas linie = new Canvas();
 		  linie.setBackground(Color.WHITE);
@@ -143,14 +151,17 @@ Thread t;
 					}});
 				
 				
-		
+				
+				
 				System.out.println("lul");
 
 				ball();	
 	}
+	
 			public void ball() throws InterruptedException { 
 			while (true) {
-				        System.out.println("this is PONG");
+				        System.out.println(""+posX);
+				        System.out.println(""+posY);
 				        posX += ballSpeedX;
 				        posY += ballSpeedY;
 				        ball.setLocation(posX,posY);
@@ -159,14 +170,20 @@ Thread t;
 				            posX = 0; 
 				        } else if (posX + ballRadius > width) {
 				            ballSpeedX = -ballSpeedX;
-				            posX = width - ballRadius;
-				            posY = 0;
+				            posX = width - ballRadius;                 //wad wrong
+				            //posX = 450;
 				        } else if (posY + ballRadius > height) {
 				            ballSpeedY = -ballSpeedY;
 				            posY = height - ballRadius;
-				        }	
-				        frame.setVisible(true);
-		Thread.sleep(5000);
+				        }else if (posY + ballRadius > width) {
+				            ballSpeedY = -ballSpeedY;
+				            posY = width - ballRadius;
+				            posY = 0;
+				        }else if (posY == 0) {
+				            ballSpeedY = -ballSpeedY;
+				            posY = 0;
+				        }
+		Thread.sleep(5);
 				}
 				
 	}}
