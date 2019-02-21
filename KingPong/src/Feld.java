@@ -1,8 +1,5 @@
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JApplet;
 
@@ -35,14 +32,18 @@ int ballSpeedY = 1;
 int ballRadius = 20;
 int posX;		
 int posY;
-int width = 450;
+int width = 430;
 int height = 270;
 int yes= 1;
 JLabel ball;
 Thread t;
 Feld frame ;
-
-
+Canvas spl1;
+int counter2;
+int counter1;
+int zufall;
+JLabel count1;
+JLabel count2;
 	private JPanel contentPane;
 
 	/**
@@ -64,8 +65,8 @@ Feld frame ;
 			}
 		});
 		
-	} */
-
+	} 
+*/
 	/**
 	 * Create the frame.
 	 * @throws InterruptedException 
@@ -97,20 +98,25 @@ Feld frame ;
 		
 		Canvas spl2 = new Canvas();
 		spl2.setBackground(Color.BLUE);
-		spl2.setBounds(409, 116, 15, 55);
+		spl2.setBounds(399, 116, 15, 55);
 		contentPane.add(spl2);
 		
 		Canvas spl1 = new Canvas();
 		spl1.setBackground(Color.RED);
-		spl1.setBounds(10, 116, 15, 55);
+		spl1.setBounds(20, 116, 15, 55);
 	    contentPane.add(spl1);
 		  
 		  Canvas linie = new Canvas();
 		  linie.setBackground(Color.WHITE);
 		  linie.setBounds(210, 0, 3, 261);
 		  contentPane.add(linie);
-			Thread.sleep(100);
-	
+		Thread.sleep(100);
+	    
+		count1= new JLabel("");
+		count1.setBounds(150, 128, 16, 16);
+		count1.setBackground(Color.WHITE);
+		count1.setForeground(Color.white);
+		contentPane.add(count1);
 		
 	//bewegen
 		addKeyListener(new KeyAdapter() {
@@ -118,15 +124,14 @@ Feld frame ;
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_S) {
 					possy1 = possy1 + größe;
-					spl1.setBounds(10, possy1, 15, 55);
-					System.out.println(possy1);
-					System.out.println("DOWN1");
+					spl1.setBounds(20, possy1, 15, 55);
+				
 				}
 				
 				if(e.getKeyCode() == KeyEvent.VK_W) {
-				System.out.println("UP1");
+				
 				possy1 = possy1 - größe;
-				spl1.setBounds(10, possy1, 15, 55);
+				spl1.setBounds(20, possy1, 15, 55);
 				}
 				
 			}});
@@ -136,15 +141,14 @@ Feld frame ;
 					
 						if(d.getKeyCode() == KeyEvent.VK_DOWN) {
 							possy2 = possy2 + größe;
-							spl2.setBounds(409, possy2, 15, 55);
-							System.out.println(possy2);
-							System.out.println("DOWN2");
+							spl2.setBounds(399, possy2, 15, 55);
+							
 						}
 						
 						if(d.getKeyCode() == KeyEvent.VK_UP) {
-						System.out.println("UP2");
+						
 						possy2 = possy2 - größe;
-						spl2.setBounds(409, possy2, 15, 55);
+						spl2.setBounds(399, possy2, 15, 55);
 						}
 						
 						 
@@ -153,69 +157,83 @@ Feld frame ;
 				
 				
 				
-				System.out.println("lul");
+				System.out.println("Start");
 
 				ball();	
 	}
 	
 			public void ball() throws InterruptedException { 
 			while (true) {
-				        System.out.println(""+posX);
-				        System.out.println(""+posY);
+				      
 				        posX += ballSpeedX;
 				        posY += ballSpeedY;
 				        ball.setLocation(posX,posY);
 				        if (posX < 0) {
-				            ballSpeedX = -ballSpeedX; 
-				            posX = 0; 
+				            counter2++;
+				            ball.setBounds(204, 128, 16, 16);
+				            posX = 204;
+				            posY=128;
+				            System.out.println("Spieler 2 : "+counter2);
+				            zufall = (int)(Math.random() * 10); 
+					    	   System.out.println(zufall);
+					    	   if (zufall>5) {
+						    	  ballSpeedX= -ballSpeedX;
+						       }else if (zufall<5){
+						    	   ballSpeedX=+ ballSpeedX;
+						       }
+				            Thread.sleep(1600);
+				          
 				        } else if (posX + ballRadius > width) {
-				            ballSpeedX = -ballSpeedX;
-				            posX = width - ballRadius;                 //wad wrong
-				            //posX = 450;
+				           
+				        	counter1++;
+				        	ball.setBounds(204, 128, 16, 16);
+				        	posX =204;
+				        	posY= 128;
+				        	System.out.println("Spieler 1 : "+counter1);
+				        	zufall = (int)(Math.random() * 10); 
+					    	   System.out.println(zufall);
+					    	   if (zufall>5) {
+							    	  ballSpeedX= -ballSpeedX;
+							       }else if (zufall<5){
+							    	   ballSpeedX=+ ballSpeedX;
+							       }
+				        	Thread.sleep(1600);
 				        } else if (posY + ballRadius > height) {
 				            ballSpeedY = -ballSpeedY;
 				            posY = height - ballRadius;
+				            
 				        }else if (posY + ballRadius > width) {
 				            ballSpeedY = -ballSpeedY;
 				            posY = width - ballRadius;
 				            posY = 0;
+				           
 				        }else if (posY == 0) {
 				            ballSpeedY = -ballSpeedY;
 				            posY = 0;
+				            
 				        }
+				        
+				       if(posX == 27 && possy1-28 < posY && possy1+28 > posY) {
+					            ballSpeedX = -ballSpeedX; 
+					            posX = 28; 
+				    	   System.out.println("collide");
+				    	   
+				       }
+				       if(posX == 388 && possy2-28 < posY && possy2+28 > posY) {
+			                  ballSpeedX = -ballSpeedX;
+                              posX = 388 - ballRadius;
+                               
+				       }
+				       
+				       
 		Thread.sleep(5);
 				}
 				
-	}}
+	}
+			
+			}
 	
 
-	/*public void runo() {
-		System.out.println("yes");
-		Thread game = new Thread();
-		
-try {	   
-	        while (true) {
-	          
-	            posX += ballSpeedX;
-	            posY += ballSpeedY;
-	            ball.setLocation(posX,posY);
-	            if (posX < 0) {
-	                ballSpeedX = -ballSpeedX; 
-	                posX = 0; 
-	            } else if (posX + ballRadius > width) {
-	                ballSpeedX = -ballSpeedX;
-	                posX = width - ballRadius;
-
-	                posY = 0;
-	            } else if (posY + ballRadius > height) {
-	                ballSpeedY = -ballSpeedY;
-	                posY = height - ballRadius;
-	            }
-	         
-	          game.sleep(100);
-	        }
-}catch(InterruptedException e){}
-	}*/
 	
 
 		
