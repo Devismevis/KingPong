@@ -4,9 +4,8 @@ public class Hauptschule {
 
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
-       feld = new Feld();
-       
-       feld.framee();
+       feld = new Feld(); 
+       feld.game();
        feld.setVisible(true);
        feld.start();
 		
