@@ -23,7 +23,7 @@ import javax.swing.border.LineBorder;
 public class Feld extends JFrame {
 int posy1 = 116;
 int posy2 = 116;
-int größe = 30;
+int grÃ¶ÃŸe = 30;
 
 
 int ballSpeedX = 1;
@@ -70,7 +70,7 @@ JLabel ball;
 		contentPane.setLayout(null);
 		 
 		ball = new JLabel("");
-		ball.setIcon(new ImageIcon("I:\\eclipse-workspace\\KingPong\\image\\ball.png"));
+		ball.setIcon(new ImageIcon("image//ball.png""));
 		ball.setBounds(204, 128, 16, 16);
 		contentPane.add(ball);
 		
@@ -101,10 +101,10 @@ JLabel ball;
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_S) {                 //linkes Paddle bewegen
-					posy1 = posy1 + größe;
+					posy1 = posy1 + grÃ¶ÃŸe;
 					spl1.setBounds(20, posy1, 15, 55);
 				}else if(e.getKeyCode() == KeyEvent.VK_W) {                                   
-				posy1 = posy1 - größe;
+				posy1 = posy1 - grÃ¶ÃŸe;
 				spl1.setBounds(20, posy1, 15, 55);
 				}}});
 		
@@ -113,10 +113,10 @@ JLabel ball;
 					
 					
 						if(d.getKeyCode() == KeyEvent.VK_DOWN) {
-							posy2 = posy2 + größe;
+							posy2 = posy2 + grÃ¶ÃŸe;
 							spl2.setBounds(399, posy2, 15, 55);
 						}else if(d.getKeyCode() == KeyEvent.VK_UP) {
-						posy2 = posy2 - größe;
+						posy2 = posy2 - grÃ¶ÃŸe;
 						spl2.setBounds(399, posy2, 15, 55);
 						}}});
 				System.out.println("Start");
