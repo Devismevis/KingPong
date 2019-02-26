@@ -90,11 +90,6 @@ JLabel ball;
 		contentPane.add(linie);
 		Thread.sleep(100);
 	    
-		count1= new JLabel("");
-		count1.setBounds(150, 128, 16, 16);
-		count1.setBackground(Color.WHITE);
-		count1.setForeground(Color.white);
-		contentPane.add(count1);
 		
 	
 		addKeyListener(new KeyAdapter() {
